@@ -1,7 +1,7 @@
 Beelzebub
 =========
 
-Beelzebub is the malware analyzer / classifier software based on static analysis.
+Beelzebub is a malware analyzer / classifier software based on static analysis.
 
 Beelzebub has 2 functions as below,
 
