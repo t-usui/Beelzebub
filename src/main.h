@@ -1,7 +1,8 @@
 #ifndef BEELZEBUB_MAIN_H_
 #define BEELZEBUB_MAIN_H_
 
-#include "analyze.h"
 #include <iostream>
+#include "analyze.h"
+#include "disasm.h"
 
-#endif /* BEELZEBUB_MAIN_H_ */
+#endif // BEELZEBUB_MAIN_H_

@@ -1,15 +1,22 @@
-CXX		= g++
-OBJS	= main.o analyze.o
-CFLAGS	= -Wall -O3
-DEBUG	= -g
+CXX	= g++
+OBJS	= main.o analyze.o disasm.o
+CFLAGS	= -Wall -O2 -ludis86
+DEBUG	= -O0 -g
 VPATH	= src/
 
-Beelzebub: $(OBJS)
+INSTALL	= install -c
+prefix	= /usr/local
+bindir	= $(prefix)/bin
+
+beelzebub: $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(CFLAGS) $(DEBUG)
 
 .cc.o:
-	$(CXX) -c $< $(FLAGS) $(DEBUG)
+	$(CXX) -c $< $(CFLAGS) $(DEBUG)
 
-.PHONY: clean
+.PHONY: install clean
+install: beelzebub
+	$(INSTALL) beelzebub $(bindir)/beelzebub
+
 clean:
-	rm -f Beelzebub *.o
+	rm -f beelzebub *.o
