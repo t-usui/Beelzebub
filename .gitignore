@@ -1,1 +1,5 @@
-*.o *.exe
+*.[ao]
+beelzebub
+*.exe
+*.zip
+test/
