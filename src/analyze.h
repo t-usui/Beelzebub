@@ -2,6 +2,7 @@
 #define BEELZEBUB_ANALYZE_H_
 #define DEBUG
 
+#include <stdio.h>
 #include <string.h>
 #include <iostream>
 #include <algorithm>

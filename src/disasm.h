@@ -4,6 +4,7 @@
 #include <udis86.h>
 #include <iostream>
 #include <iomanip>
+#include <stdlib.h>
 #include <string.h>
 
 union _restricted_instruction {
