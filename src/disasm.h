@@ -3,6 +3,7 @@
 
 #include <udis86.h>
 #include <iostream>
+#include <iomanip>
 #include <string.h>
 
 union _restricted_instruction {
@@ -23,11 +24,14 @@ class Disassembler{
   // Member method
   void DisassembleCode();
   void ConstructRestrictedInstruction();
+  void DisplayOpcodeFirstByte();
 
  private:
   ud_t ud_obj_;
   unsigned char *base_of_code_;
   int size_of_code_;
+
+  // for ConstructRestrictedInstruction()
   int ProcessPrefix(ud_t ud_obj,
                     union _restricted_instruction *restricted_instruction);
   unsigned char DistinguishSegment(ud_t ud_obj, int prefix_length);

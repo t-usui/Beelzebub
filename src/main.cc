@@ -23,8 +23,12 @@ int main(int argc, char **argv){
   analyzer->Run();
   disasm->set_size_of_code(analyzer->get_size_of_code());
   disasm->set_base_of_code(analyzer->get_base_of_mapped_code());
+  // for general disassemble
   // disasm->DisassembleCode();
-  disasm->ConstructRestrictedInstruction();
+  // for Iwamura system
+  // disasm->ConstructRestrictedInstruction();
+  // for Rad system
+  disasm->DisplayOpcodeFirstByte();
   delete analyzer;
   delete disasm;
 

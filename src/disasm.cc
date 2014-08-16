@@ -20,7 +20,7 @@ void Disassembler::set_size_of_code(int size_of_code){
 
 // for general disassemble
 void Disassembler::DisassembleCode(){
-  std::cout << "Start disassembling..." << std::endl;
+  // std::cout << "Start disassembling..." << std::endl;
   // std::cout << this->base_of_code_ << std::endl;
   // std::cout << this->size_of_code_ << std::endl;
   ud_set_input_buffer(&(this->ud_obj_), this->base_of_code_, this->size_of_code_);
@@ -237,6 +237,23 @@ void Disassembler::ProcessModRMAndSIB(ud_t ud_obj,
     sib = *(opcode_ptr + opcode_length + 1);
     (*restricted_instruction).byte[3] |= sib;
     printf("SIB: %x\n", sib);
+  }
+}
+
+void Disassembler::DisplayOpcodeFirstByte() {
+  // std::cout << "Start displaying..." << std::endl;
+  // std::cout << this->base_of_code_ << std::endl;
+  // std::cout << this->size_of_code_ << std::endl;
+  ud_set_input_buffer(&(this->ud_obj_), this->base_of_code_,
+                      this->size_of_code_);
+  ud_set_mode(&(this->ud_obj_), 32);
+  ud_set_syntax(&(this->ud_obj_), UD_SYN_INTEL);
+
+  while(ud_disassemble(&(this->ud_obj_)) != 0){
+    // std::cout << "\t" << std::setw(1) << ud_insn_asm(&(this->ud_obj_)) << std::endl;
+    // std::cout << "\t" << std::setw(1) << ud_insn_hex(&(this->ud_obj_)) << std::endl;
+    std::string str = ud_insn_hex(&(this->ud_obj_));
+    std::cout << str.at(0) << str.at(1) << std::endl;
   }
 }
 

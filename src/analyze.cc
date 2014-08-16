@@ -34,7 +34,7 @@ void Analyzer::Read(char *filename){
 
   this->code_size_ = this->GetFileSize(fp);
   this->code_ = new unsigned char[this->code_size_];
-  std::cout << "FileSize:" << this->code_size_ << std::endl;
+  // std::cout << "FileSize:" << this->code_size_ << std::endl;
   fread(this->code_, sizeof(this->code_[0]), this->code_size_, fp);
 }
 
@@ -50,7 +50,7 @@ int Analyzer::GetFileSize(FILE *fp){
 void Analyzer::Run(){
   this->SearchPeSignature();
   this->GetPeHeader();
-  this->ShowPeHeader();
+//  this->ShowPeHeader();
   this->MapImageOnMemory();
 //  this->SearchImportTable();
 //  this->ExtractImageImportDescriptor();
@@ -120,14 +120,14 @@ void Analyzer::MapImageOnMemory(){
   // map header
   memcpy(this->mapped_image_, this->code_, this->pe_header_->OptionalHeader.SizeOfHeaders);
   // map section data
-  std::cout << "Number of sections: " << this->pe_header_->FileHeader.NumberOfSections << std::endl;
+  // std::cout << "Number of sections: " << this->pe_header_->FileHeader.NumberOfSections << std::endl;
   for (int i=0; i<this->pe_header_->FileHeader.NumberOfSections; i++) {
     if (this->image_section_header_[i].PointerToRawData) {
       memcpy(&this->mapped_image_[image_section_header_[i].VirtualAddress],
              &this->code_[image_section_header_[i].PointerToRawData],
              image_section_header_[i].SizeOfRawData);
-      std::cout << i << std::endl;
-      std::cout << image_section_header_[i].PointerToRawData << std::endl;
+      // std::cout << i << std::endl;
+      // std::cout << image_section_header_[i].PointerToRawData << std::endl;
     }
   }
   FILE *fp;
